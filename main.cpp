@@ -3,6 +3,7 @@
 #include "edit.h"
 #include "add.h"
 #include "delete.h"
+#include "insert.h"
 
 
 int main() {
@@ -26,6 +27,8 @@ int main() {
       add_func(array,row,col,command_array);
     else if(command_array[0] == "delete")
       delete_func(array,row,col,command_array);
+    else if(command_array[0] == "insert")
+      insert_func(array,row,col,command_array);
     else if(command_array[0] == "exit") 
       break;
     else 
