@@ -1,5 +1,6 @@
 #include "print.h"
 #include "split.h"
+#include "edit.h"
 
 int main() {
   vector<vector<std::string>> array = {{""}};
@@ -16,9 +17,13 @@ int main() {
     getline(cin,cmd);
     split_command(command_array,cmd);
 
-    for(decltype(command_array.size()) i = 0;i<command_array.size();i++){
-      cout << command_array[i] << "\n";
-    }
+    if(command_array[0] == "edit")
+      edit_func(array,command_array);
+  
+    else if(command_array[0] == "exit") 
+      break;
+    else 
+      cout<< "Wrong input\n\n";
   }
   
   return 0;
