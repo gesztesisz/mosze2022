@@ -4,6 +4,7 @@
 #include "add.h"
 #include "delete.h"
 #include "insert.h"
+#include "save.h"
 
 
 int main() {
@@ -16,6 +17,8 @@ int main() {
     row = array.size(); 
     col = array[0].size();
     print_func(array,row,col);
+
+    char sep = ';';
     
     cout <<"command: ";
     getline(cin,cmd);
@@ -29,6 +32,9 @@ int main() {
       delete_func(array,row,col,command_array);
     else if(command_array[0] == "insert")
       insert_func(array,row,col,command_array);
+    else if(command_array[0] == "save")
+      save_func(array,row,col,command_array,sep);
+    
     else if(command_array[0] == "exit") 
       break;
     else 
