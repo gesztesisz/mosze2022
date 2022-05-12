@@ -1,0 +1,5 @@
+edit A1 szia
+add 1 rows
+delete 2
+insert 1 cols before A
+exit

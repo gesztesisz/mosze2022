@@ -1,0 +1,15 @@
+name: i/o_test
+
+on:
+  push
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: g++ -Wall *.cpp
+      - run: chmod +x run_test.sh
+      - name: Generate txt , check diff. , remove output.txt
+        run: ./run_test.sh

@@ -25,6 +25,7 @@ int main(int argc,char* argv[]) {
     
     cout <<"command: ";
     getline(cin,cmd);
+    cout << "\n";
     split_command(command_array,cmd,sep);
     
     if(command_array[0] == "edit")
