@@ -2,6 +2,8 @@
 #include "split.h"
 #include "edit.h"
 #include "add.h"
+#include "delete.h"
+
 
 int main() {
   vector<vector<std::string>> array = {{""}};
@@ -22,6 +24,8 @@ int main() {
       edit_func(array,command_array);
     else if(command_array[0] == "add")
       add_func(array,row,col,command_array);
+    else if(command_array[0] == "delete")
+      delete_func(array,row,col,command_array);
     else if(command_array[0] == "exit") 
       break;
     else 
