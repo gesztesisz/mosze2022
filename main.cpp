@@ -15,18 +15,18 @@ int main(int argc,char* argv[]) {
 
   if(argc > 1)
    cla_func(array,row,col,argc,argv);
-  char sep = ';';
+  
   while(1){
     row = array.size(); 
     col = array[0].size();
     print_func(array,row,col);
 
-    
+    char sep = ' ';
     
     cout <<"command: ";
     getline(cin,cmd);
     split_command(command_array,cmd,sep);
-
+    
     if(command_array[0] == "edit")
       edit_func(array,command_array);
     else if(command_array[0] == "add")

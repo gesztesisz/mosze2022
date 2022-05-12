@@ -3,7 +3,7 @@
 void save_func(vector<vector<string>> &array,int &row,int &col,vector<string> &command_array,char &sep){
   string name = command_array[1];
   int i,j;
-
+  sep = ';';
   if(command_array.size() >2 and command_array[2] =="-sep"){
     sep = command_array[3][0];
   }

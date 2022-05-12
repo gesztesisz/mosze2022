@@ -3,6 +3,7 @@
 
 
   void split_command(vector<string> &command_array,string cmd,char &sep){
+  
   vector<string> vec;
 
   if (cmd.substr(0,4) == "edit"){
