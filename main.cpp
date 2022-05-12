@@ -1,6 +1,12 @@
-#include<iostrem>
+#include "print.h"
 
-int main(){
 
-    return 0;
-}
+int main() {
+  vector<vector<std::string>> array = {{""}};
+  int row = array.size(); 
+  int col = array[0].size();
+
+  print_func(array,row,col);
+  
+  return 0;
+} 
