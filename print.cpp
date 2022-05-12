@@ -1,20 +1,72 @@
 #include "print.h"
 
 void print_func(vector<vector<string>> &array,int &row,int &col){
-  cout << "\t|";
-  for(int i = 0;i<col;i++){
-    cout << char(i+'A');
-    cout << "\t|";
+ int width[col + 1]; //First element is full width 
+  unsigned int temp = 0;
+  int i,j;
+  string str = "";
+  for (i = 0;i<col;i++){
+    width[i] = 0;
   }
-  cout<<"\n";
 
-  for(int i = 0;i<row;i++){
-    for(int j = 0;j<col;j++){
-      if(j == 0) {
-        cout << i + 1<< "\t|" ;
-      }
-      cout << array[i][j] << "\t|";
+  for(i = 0;i<col;i++){
+    for(j = 0;j<row;j++){
+     if(array[j][i].length() > temp){
+       temp = array[j][i].length();
+     }
     }
-    cout << endl;
+    width[i+1] = temp;
+    temp = 0;
   }
+  width[0] = trunc(log10(row)) + 1; // 1 = 1, 10 = 2, 100 = 3
+
+  for(i = 0;i<col+1;i++){
+    if(width[i] == 0){
+      str+= "-";
+      continue;
+    }
+    for(j = 0;j<width[i];j++){
+      str += "-";
+    }
+  }
+  for(i = 0;i<col+1;i++){
+    str+= "-";
+  }
+
+
+  for(i = 0;i<width[0];i++){
+    cout << " ";
+  }
+  cout << "|";
+  for(i = 0;i<col;i++){
+    cout <<char(i+'A');
+    for(j = 0;j<width[i+1]-1;j++){
+      cout << " ";
+    }
+    cout << "|";
+  }
+
+  cout <<"\n"<<str<<"\n";
+
+  for(i = 0;i<row;i++){
+    cout << i+1;
+    for(int k = trunc(log10(i+1)) + 1;k<width[0];k++){
+      cout << " ";
+    }
+    cout << "|";
+    for(j = 0;j<col;j++){
+      if(width[j+1] == 0){
+        cout <<" |";
+        continue;  
+      }
+      cout << array[i][j];
+      for(int l = array[i][j].length();l<width[j+1];l++){
+        cout << " ";
+      }
+      cout << "|";
+    }
+    cout <<"\n"<< str<<"\n";
+  }
+
 }
+
