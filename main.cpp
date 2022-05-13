@@ -7,6 +7,7 @@
 #include "save.h"
 #include "cla.h"
 #include "sort.h"
+#include "swap.h"
 
 int main(int argc,char* argv[]) {
   vector<vector<std::string>> array = {{""}};
@@ -41,6 +42,8 @@ int main(int argc,char* argv[]) {
       save_func(array,row,col,command_array,sep);
     else if(command_array[0] == "sort")  
       sort_func(array,row,col,command_array);
+    else if(command_array[0] == "swap")
+      swap_func(array,row,col,command_array);
     else if(command_array[0] == "exit") 
       break;
     else 

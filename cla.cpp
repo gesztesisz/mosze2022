@@ -21,9 +21,9 @@ void cla_func(vector<vector<string>> &array,int &row,int &col,int &argc,char *ar
       lines.push_back(text);
     }
     input_csv.close();
-    for(decltype(lines.size()) i = 0;i<lines.size();i++){
+    for(unsigned int i = 0;i<lines.size();i++){
       sep_count = 0;
-      for(decltype(lines[i].length()) j = 0;j<lines[i].length();j++){
+      for(unsigned int j = 0;j<lines[i].length();j++){
         if(lines[i][j] == sep){
           sep_count ++;
         }
@@ -52,7 +52,7 @@ void cla_func(vector<vector<string>> &array,int &row,int &col,int &argc,char *ar
       temp = lines[i];
       split_command(temp_command,temp,sep);
       vec = temp_command;
-      for(decltype(vec.size()) j = 0;j<vec.size();j++){
+      for(unsigned int j = 0;j<vec.size();j++){
         if(vec[j] != ""){
           array[i][j] = vec[j];
         }
