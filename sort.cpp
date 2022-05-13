@@ -41,9 +41,13 @@ void swapping_row(vector<vector<string>> &array,int j,int row){
 
 void sort_func(vector<vector<string>> &array, int &row, int &col, vector<string> &command_array){
   
-  //bool is_asc = true;
+  bool is_asc = true;
   bool is_row;
   int pos;
+
+  if(command_array.size()>3 and command_array[3] == "desc")
+    is_asc = false;
+  
 
   if(command_array[2][0] >= 'A' and command_array[2][0] <= 'Z'){
     is_row = false;
@@ -73,13 +77,22 @@ void sort_func(vector<vector<string>> &array, int &row, int &col, vector<string>
       for (int j = 0; j < row - i - 1; j++){
         str1 =array[j][pos];
         str2 = array[j + 1][pos];
-        if (is_digit(str1) > is_digit(str2)){ // sort by str & num (str<num)
+        if (is_digit(str1) > is_digit(str2) and is_asc){ // sort by str & num (str<num)
           swapping_col(array,j);
         }
-        else if(is_digit(str1) == is_digit(str2) and len(str1) > len(str2)){
+        else if(is_digit(str1) < is_digit(str2) and !is_asc){ // sort by str & num (str<num)
           swapping_col(array,j);
         }
-        else if(is_digit(str1) == is_digit(str2) and len(str1) == len(str2) and str1>str2){
+        if(is_digit(str1) == is_digit(str2) and len(str1) > len(str2) and is_asc ){
+          swapping_col(array,j);
+        }
+        else if(is_digit(str1) == is_digit(str2) and len(str1) < len(str2) and !is_asc){
+          swapping_col(array,j);
+        }
+        if(is_digit(str1) == is_digit(str2) and len(str1) == len(str2) and str1>str2 and is_asc){
+          swapping_col(array,j);
+        }
+        else if(is_digit(str1) == is_digit(str2) and len(str1) == len(str2) and str1 < str2 and !is_asc){
           swapping_col(array,j);
         }
       }
@@ -90,13 +103,22 @@ void sort_func(vector<vector<string>> &array, int &row, int &col, vector<string>
       for (int j = 0; j < col - i - 1; j++){
         str1 =array[pos][j];
         str2 = array[pos][j + 1];
-        if (is_digit(str1) > is_digit(str2)){ // sort by str & num (str<num)
+        if (is_digit(str1) > is_digit(str2) and is_asc){ // sort by str & num (str<num)
           swapping_row(array,j,row);
         }
-        else if(is_digit(str1) == is_digit(str2) and len(str1) > len(str2)){
+        else if(is_digit(str1) < is_digit(str2) and !is_asc){
           swapping_row(array,j,row);
         }
-        else if(is_digit(str1) == is_digit(str2) and len(str1) == len(str2) and str1>str2){
+        if(is_digit(str1) == is_digit(str2) and len(str1) > len(str2) and is_asc){
+          swapping_row(array,j,row);
+        }
+        else if(is_digit(str1) == is_digit(str2) and len(str1) < len(str2) and !is_asc){
+          swapping_row(array,j,row);
+        }
+        if(is_digit(str1) == is_digit(str2) and len(str1) == len(str2) and str1>str2){
+          swapping_row(array,j,row);
+        }
+        else if(is_digit(str1) == is_digit(str2) and len(str1) == len(str2) and str1 < str2 and !is_asc){
           swapping_row(array,j,row);
         }
       }
