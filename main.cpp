@@ -9,6 +9,7 @@
 #include "sort.h"
 #include "swap.h"
 #include "align.h"
+#include "clear.h"
 
 int main(int argc,char* argv[]) {
   vector<vector<std::string>> array = {{""}};
@@ -48,6 +49,8 @@ int main(int argc,char* argv[]) {
       swap_func(array,row,col,command_array);
     else if(command_array[0] == "align")
       align_func(array,row,col,command_array,align_right);
+    else if(command_array[0] == "clear")
+      clear_func(array,row,col,command_array);
     else if(command_array[0] == "exit") 
       break;
     else 
