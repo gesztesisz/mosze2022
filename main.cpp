@@ -8,12 +8,14 @@
 #include "cla.h"
 #include "sort.h"
 #include "swap.h"
+#include "align.h"
 
 int main(int argc,char* argv[]) {
   vector<vector<std::string>> array = {{""}};
   int row = 1,col = 1;
   vector<string> command_array;
   string cmd;
+  vector<string> align_right;
 
   if(argc > 1)
    cla_func(array,row,col,argc,argv);
@@ -21,7 +23,7 @@ int main(int argc,char* argv[]) {
   while(1){
     row = array.size(); 
     col = array[0].size();
-    print_func(array,row,col);
+    print_func(array,row,col,align_right);
 
     char sep = ' ';
     
@@ -44,6 +46,8 @@ int main(int argc,char* argv[]) {
       sort_func(array,row,col,command_array);
     else if(command_array[0] == "swap")
       swap_func(array,row,col,command_array);
+    else if(command_array[0] == "align")
+      align_func(array,row,col,command_array,align_right);
     else if(command_array[0] == "exit") 
       break;
     else 
