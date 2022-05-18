@@ -48,6 +48,8 @@ int main(int argc,char* argv[]) {
       tables[active]->clear_func(command_array);
     else if(command_array[0] == "new" and command_array[1] == "sheet")
       create_table(tables,command_array,active);
+    else if(command_array[0] == "switch")
+      create_table(command_array,active);
     else if(command_array[0] == "exit") 
       break;
     else 

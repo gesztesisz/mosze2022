@@ -3,3 +3,4 @@
 
 void print_table(vector<table*> tables,int &active);
 void create_table(vector<table*> &tables,vector<string> &command_array,int &active);
+void create_table(vector<string> &command_array,int &active);
