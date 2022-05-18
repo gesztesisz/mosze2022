@@ -31,7 +31,10 @@ public:
   void setName(string name);
 
   void add_func(vector<string> &command_array);
+
+  vector<string> align(string str);
   void align_func(vector<string> &command_array);
+  
   void cla_func(int &argc, char *argv[]);
   void clear_func(vector<string> &command_array);
   void delete_func(vector<string> &command_array);
