@@ -22,3 +22,11 @@ void switch_func(vector<table*> &tables,vector<string> &command_array,int &activ
     }
     active  = stoi(command_array[1]);
 }
+void rename_func(vector<table*> &tables,vector<string> &command_array){
+    if(command_array.size() < 3){
+        cout << "Not enough argument\n";
+        return;
+    }
+    
+    tables[stoi(command_array[1])]->setName(command_array[2]);
+}

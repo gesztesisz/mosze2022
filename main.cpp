@@ -50,6 +50,8 @@ int main(int argc,char* argv[]) {
       create_table(tables,command_array,active);
     else if(command_array[0] == "switch")
       switch_func(tables,command_array,active);
+    else if(command_array[0] == "rename")
+      rename_func(tables,command_array);
     else if(command_array[0] == "exit") 
       break;
     else 
