@@ -1,5 +1,7 @@
-edit A1 szia
 add 1 rows
-delete 2
-insert 1 cols before A
+add 1 cols
+edit A1 test
+edit A2 test_again
+align A1 right
+clear A1:B2
 exit
