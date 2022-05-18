@@ -1,20 +1,25 @@
 #include "class.h"
+#include "storage.h"
 
 int main(int argc,char* argv[]) {
   vector<vector<std::string>> array = {{""}};
   
   vector<string> command_array;
   string cmd;
-  table *t = new table;
-  t->setName("table1");
+  vector<table*> tables;
+  tables.push_back(new table);
+  tables[0]->setName("table1");
   
   if(argc > 1)
-   t->cla_func(argc,argv);
-  
+   tables[0]->cla_func(argc,argv);
+      int active = 0;
   while(1){
-    t->setRow();
-    t->setCol();
-    t->print_func();
+
+
+    tables[active]->setRow();
+    tables[active]->setCol();
+    tables[active]->print_func();
+    print_table(tables,active);
 
     char sep = ' ';
     
@@ -24,23 +29,25 @@ int main(int argc,char* argv[]) {
     split_command(command_array,cmd,sep);
     
     if(command_array[0] == "edit")
-      t->edit_func(command_array);
+      tables[active]->edit_func(command_array);
     else if(command_array[0] == "add")
-      t->add_func(command_array);
+      tables[active]->add_func(command_array);
     else if(command_array[0] == "delete")
-      t->delete_func(command_array);
+      tables[active]->delete_func(command_array);
     else if(command_array[0] == "insert")
-      t->insert_func(command_array);
+      tables[active]->insert_func(command_array);
     else if(command_array[0] == "save")
-      t->save_func(command_array,sep);
+      tables[active]->save_func(command_array,sep);
     else if(command_array[0] == "sort")  
-      t->sort_func(command_array);
+      tables[active]->sort_func(command_array);
     else if(command_array[0] == "swap")
-      t->swap_func(command_array);
+      tables[active]->swap_func(command_array);
     else if(command_array[0] == "align")
-      t->align_func(command_array);
+      tables[active]->align_func(command_array);
     else if(command_array[0] == "clear")
-      t->clear_func(command_array);
+      tables[active]->clear_func(command_array);
+    else if(command_array[0] == "new" and command_array[1] == "sheet")
+      create_table(tables,command_array,active);
     else if(command_array[0] == "exit") 
       break;
     else 
