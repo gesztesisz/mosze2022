@@ -15,6 +15,10 @@ void create_table(vector<table*> &tables,vector<string> &command_array,int &acti
     active = tables.size()-1;
     tables[active]->setName(command_array[2]);
 }
-void create_table(vector<string> &command_array,int &active){
-    active  = command_array[1][0]-'0';
+void switch_func(vector<table*> &tables,vector<string> &command_array,int &active){
+    if(stoi(command_array[1]) > tables.size()-1){
+        cout <<"Out of range\n";
+        return;
+    }
+    active  = stoi(command_array[1]);
 }
