@@ -52,7 +52,15 @@ int main(int argc,char* argv[]) {
       switch_func(tables,command_array,active);
     else if(command_array[0] == "rename")
       rename_func(tables,command_array);
+    else if(command_array[0] == "close"){
+      close_func(tables,command_array);
+      if(tables.size() == 0)
+        break;
+    }
     else if(command_array[0] == "exit") 
+      for(unsigned int i = 0;i<tables.size())
+        delete tables[i];
+      tables.clear();
       break;
     else 
       cout<< "Wrong input\n\n";

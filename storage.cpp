@@ -3,7 +3,7 @@
 void print_table(vector<table*> tables,int &active){
     for(unsigned int  i = 0;i<tables.size();i++){
         cout << i  << ": "<< tables[i]->getName();
-        if(active == i)
+        if(unsigned(active) == i)
             cout << "*";
         cout << "  ";
     }
@@ -16,7 +16,7 @@ void create_table(vector<table*> &tables,vector<string> &command_array,int &acti
     tables[active]->setName(command_array[2]);
 }
 void switch_func(vector<table*> &tables,vector<string> &command_array,int &active){
-    if(stoi(command_array[1]) > tables.size()-1){
+    if(unsigned(stoi(command_array[1])) > tables.size()-1){
         cout <<"Out of range\n";
         return;
     }
@@ -29,4 +29,14 @@ void rename_func(vector<table*> &tables,vector<string> &command_array){
     }
     
     tables[stoi(command_array[1])]->setName(command_array[2]);
+}
+void close_func(vector<table*> &tables,vector<string> &command_array){
+    int ind = stoi(command_array[1]);
+    if(tables.size() == 1){
+        delete tables[0];
+        tables.clear();
+    }
+    delete tables[ind];
+    tables.erase(tables.begin() + ind);
+
 }

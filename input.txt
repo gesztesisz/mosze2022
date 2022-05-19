@@ -4,4 +4,6 @@ edit A1 test
 edit A2 test_again
 align A1 right
 clear A1:B2
+new sheet table 1
+close 0
 exit
