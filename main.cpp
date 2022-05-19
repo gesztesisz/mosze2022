@@ -57,11 +57,13 @@ int main(int argc,char* argv[]) {
       if(tables.size() == 0)
         break;
     }
-    else if(command_array[0] == "exit") 
-      for(unsigned int i = 0;i<tables.size())
+    else if(command_array[0] == "exit"){
+      for(unsigned int i = 0;i<tables.size();i++){
         delete tables[i];
+      }
       tables.clear();
       break;
+    }
     else 
       cout<< "Wrong input\n\n";
   }
