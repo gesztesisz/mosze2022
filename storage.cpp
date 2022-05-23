@@ -30,11 +30,11 @@ void rename_func(vector<table*> &tables,vector<string> &command_array){
     
     tables[stoi(command_array[1])]->setName(command_array[2]);
 }
-void close_func(vector<table*> &tables,vector<string> &command_array){
+void close_func(vector<table*> &tables,vector<string> &command_array,int &active){
     int ind = stoi(command_array[1]);
-    if(tables.size() == 1){
-        delete tables[0];
-        tables.clear();
+    if(active == ind){
+        cout << "Can't close active table. Use 'switch <index>' to change active table.\n";
+        return;
     }
     delete tables[ind];
     tables.erase(tables.begin() + ind);

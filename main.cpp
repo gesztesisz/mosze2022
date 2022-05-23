@@ -56,7 +56,7 @@ int main(int argc,char* argv[]) {
       if(tables.size() == 1){
         delete tables[0];
       }
-      close_func(tables,command_array);
+      close_func(tables,command_array,active);
     }
     else if(command_array[0] == "exit"){
       for(unsigned int i = 0;i<tables.size();i++){
