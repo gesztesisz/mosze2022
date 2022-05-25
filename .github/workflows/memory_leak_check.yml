@@ -1,0 +1,13 @@
+name: memory_leak_check
+
+on:
+  push
+
+jobs:
+  valgrind_env:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: g++ *.cpp
+      - run: sudo apt install valgrind
+      - run: valgrind --error-exitcode=1 ./a.out < input.txt
