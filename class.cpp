@@ -564,7 +564,7 @@ void table::aggregate_func(vector<string> &command_array){
   edited_y = command_array[1][0] - 'A';
   if(command_array[1].length() < 2 ){
     cout << "Wrong input\n";
-    return;
+    return ;
   }
   if(edited_x >= array.size() or edited_y >= array[0].size()){
     cout << "Out of range\n";
@@ -595,48 +595,19 @@ void table::aggregate_func(vector<string> &command_array){
       range.erase(range.begin()+i);
     }
   }
-  
-  x = stoi(range[0].substr(1))-1;
-  y = range[0][0] - 'A';
-  double sum = 0.0;
-  
-  double avg = 0.0;
-  double min = stof(array[x][y]);
-  double max= stof(array[x][y]);
-  int db = 0;
-
   string cmd = command_array[2].substr(0,3);
-  for( unsigned int i = 0 ; i < range.size() ; i ++){
-    x = stoi(range[i].substr(1))-1;
-    y = range[i][0] - 'A';
-
-    if ( cmd == "sum" )
-      sum += stof(array[x][y]);
-    else if ( cmd == "avg"){
-      avg += stof(array[x][y]);
-      db++;
-    }
-    else if ( cmd == "min" )
-      if ( stof(array[x][y]) < min )
-        min = stof(array[x][y]);
-    else if ( cmd ==  "max" )
-      if ( stof(array[x][y]) )
-        max = stof(array[x][y]);
-    else {
-      cout << "Wrong aggregator command\n";
-      break;
-    }
+  cout<< cmd <<endl;
+  if(cmd != "sum" and cmd != "avg" and cmd != "min" and cmd != "max"){
+    cout << "Wrong aggregator command\n";
+    return;  
   }
+
   if ( cmd == "sum" )
-    //array[edited_x][edited_y] = to_string(round( sum * 1000.0 ) / 1000.0);
-    array[edited_x][edited_y] = to_string(round( sum * 1000.0 ) / 1000.0).substr(0, std::to_string(round( sum * 1000.0 ) / 1000.0).find(".") + 3 + 1);
+    array[edited_x][edited_y] = to_string(round( sum(array,range) * 1000.0 ) / 1000.0).substr(0, std::to_string(round( sum(array,range) * 1000.0 ) / 1000.0).find(".") + 3 + 1);
   else if ( cmd == "avg")
-    //array[edited_x][edited_y] = to_string(round( (avg/db) * 1000.0 ) / 1000.0);
-    array[edited_x][edited_y] = to_string(round( avg/db * 1000.0 ) / 1000.0).substr(0, std::to_string(round( avg/db * 1000.0 ) / 1000.0).find(".") + 3 + 1);
+    array[edited_x][edited_y] = to_string(round( avg(array,range) * 1000.0 ) / 1000.0).substr(0, std::to_string(round( avg(array,range) * 1000.0 ) / 1000.0).find(".") + 3 + 1);
   else if ( cmd == "min" )
-    //array[edited_x][edited_y] = to_string(round( min * 1000.0 ) / 1000.0);
-    array[edited_x][edited_y] = to_string(round( min * 1000.0 ) / 1000.0).substr(0, std::to_string(round( min * 1000.0 ) / 1000.0).find(".") + 3 + 1);
+    array[edited_x][edited_y] = to_string(round( min(array,range) * 1000.0 ) / 1000.0).substr(0, std::to_string(round( min(array,range) * 1000.0 ) / 1000.0).find(".") + 3 + 1);
   else if ( cmd ==  "max" )
-    //array[edited_x][edited_y] = to_string(round( max * 1000.0 ) / 1000.0);
-    array[edited_x][edited_y] = to_string(round( max * 1000.0 ) / 1000.0).substr(0, std::to_string(round( max * 1000.0 ) / 1000.0).find(".") + 3 + 1);
+    array[edited_x][edited_y] = to_string(round( max(array,range) * 1000.0 ) / 1000.0).substr(0, std::to_string(round( max(array,range) * 1000.0 ) / 1000.0).find(".") + 3 + 1);
 }

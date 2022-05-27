@@ -77,3 +77,54 @@ void swapping_row(vector<vector<string>> &array,int j,int row){
     array[i][j+1] = temp;
   }
 }
+
+double sum(vector<vector<string>> array, vector<string> range){
+  int x,y;
+  double sum = 0.0;
+  for( unsigned int i = 0 ; i < range.size() ; i ++){
+    x = stoi(range[i].substr(1))-1;
+    y = range[i][0] - 'A';
+    sum += stof(array[x][y]);
+  }
+
+  return sum;
+}
+double avg(vector<vector<string>> array, vector<string> range){
+  int x,y;
+  double avg = 0.0;
+  int db = 0;
+  for( unsigned int i = 0 ; i < range.size() ; i ++){
+    x = stoi(range[i].substr(1))-1;
+    y = range[i][0] - 'A';
+      avg += stof(array[x][y]);
+      db++;
+  }
+  return avg/db;
+}
+double min(vector<vector<string>> array, vector<string> range){
+  int x,y;
+  x = stoi(range[0].substr(1))-1;
+  y = range[0][0] - 'A';
+  double min = stof(array[x][y]);
+  for( unsigned int i = 0 ; i < range.size() ; i ++){
+    x = stoi(range[i].substr(1))-1;
+    y = range[i][0] - 'A';
+    if ( stof(array[x][y]) < min )
+      min = stof(array[x][y]);
+  }
+  return min;
+}
+double max(vector<vector<string>> array, vector<string> range){
+  int x,y;
+  x = stoi(range[0].substr(1))-1;
+  y = range[0][0] - 'A';
+  double max= stof(array[x][y]);
+
+  for( unsigned int i = 0 ; i < range.size() ; i ++){
+    x = stoi(range[i].substr(1))-1;
+    y = range[i][0] - 'A';
+    if ( stof(array[x][y])> max )
+      max = stof(array[x][y]);
+  }
+  return max;
+}
