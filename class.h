@@ -2,11 +2,6 @@
 #include "headers.h"
 #include "functions.h"
 
-/**
- * @brief TEST
- * 
- */
-
 class table{
 private:
   string name ;
@@ -45,4 +40,5 @@ public:
   void save_func(vector<string> &command_array,char &sep);
   void sort_func(vector<string> &command_array);
   void swap_func(vector<string> &command_array);
+  void aggregate_func(vector<string> &command_array);
 };

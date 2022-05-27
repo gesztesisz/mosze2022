@@ -13,6 +13,7 @@ int main(int argc,char* argv[]) {
   if(argc > 1)
    tables[0]->cla_func(argc,argv);
       int active = 0;
+  
   while(1){
 
 
@@ -60,6 +61,8 @@ int main(int argc,char* argv[]) {
       }
       close_func(tables,command_array,active);
     }
+    else if(command_array[0] == "set")
+      tables[active]->aggregate_func(command_array);
     else if(command_array[0] == "exit"){
       for(unsigned int i = 0;i<tables.size();i++){
         delete tables[i];
