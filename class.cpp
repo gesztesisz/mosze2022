@@ -574,6 +574,16 @@ void table::aggregate_func(vector<string> &command_array){
   string str = command_array[2].substr(4,command_array[2].length()-5);
   vector<string> range = align(str);
   int x,y;
+  for(unsigned int i = 0 ; i < range.size() ; i++){
+    x = stoi(range[i].substr(1))-1;
+    y = range[i][0] - 'A';
+    if(x >= array.size() or y >= array[0].size()){
+      cout << "Out of range\n";
+      return;
+    }
+  }
+
+  
   for(unsigned int i = 0 ; i < range.size() ; i++ ){
     x = stoi(range[i].substr(1))-1;
     y = range[i][0] - 'A';
