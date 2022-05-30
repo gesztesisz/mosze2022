@@ -77,14 +77,22 @@ void swapping_row(vector<vector<string>> &array,int j,int row){
     array[i][j+1] = temp;
   }
 }
-
+#include <stdlib.h>
 double sum(vector<vector<string>> array, vector<string> range){
   int x,y;
   double sum = 0.0;
   for( unsigned int i = 0 ; i < range.size() ; i ++){
     x = stoi(range[i].substr(1))-1;
     y = range[i][0] - 'A';
-    sum += stof(array[x][y]);
+    
+    
+  sum += stod(array[x][y]);
+    
+
+  
+    
+
+    
   }
 
   return sum;

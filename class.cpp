@@ -587,6 +587,9 @@ void table::aggregate_func(vector<string> &command_array){
   for(unsigned int i = 0 ; i < range.size() ; i++ ){
     x = stoi(range[i].substr(1))-1;
     y = range[i][0] - 'A';
+    if(!is_digit(array[x][y]));
+      range.erase(range.begin()+i);
+    
     try{
       stof(array[x][y]);
       continue;
@@ -594,6 +597,7 @@ void table::aggregate_func(vector<string> &command_array){
     catch(const invalid_argument){
       range.erase(range.begin()+i);
     }
+    
   }
   string cmd = command_array[2].substr(0,3);
   cout<< cmd <<endl;

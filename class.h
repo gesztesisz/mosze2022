@@ -12,19 +12,23 @@ public:
   table(){}
 
   vector<vector<string>> getArray() { return array; }
-  int getRow() { 
+  int getRow(){ 
     row = array.size();    
     return row; 
   }
-  int getCol() { 
+  int getCol(){ 
     col = array[0].size();
     return col; 
   }
+
   string getName(){return name;}
 
   void setRow();
   void setCol(); 
   void setName(string name);
+  void setArray(vector<vector<string>> array){
+    this->array = array;
+  }
 
   void add_func(vector<string> &command_array);
 
