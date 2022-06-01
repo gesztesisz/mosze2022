@@ -1,0 +1,17 @@
+name: test
+
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: gesztesisz/mosze:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: g++ class.cpp functions.cpp main.cpp storage.cpp
+      - name: Permission deny  
+        run: chmod +x run_test.sh
+      - name: I/O test
+        run: ./run_test.sh
+      - name: Memory leak check
+        run: valgrind --error-exitcode=1 ./a.out < input.txt
