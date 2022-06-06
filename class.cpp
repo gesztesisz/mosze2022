@@ -615,3 +615,56 @@ void table::aggregate_func(vector<string> &command_array){
   else if ( cmd ==  "max" )
     array[edited_x][edited_y] = to_string(round( max(array,range) * 1000.0 ) / 1000.0).substr(0, std::to_string(round( max(array,range) * 1000.0 ) / 1000.0).find(".") + 3 + 1);
 }
+
+void table::barchart_func(vector<string> &command_array){
+    string str;
+    ifstream fin("SVG/build.html");
+    ofstream fout(command_array[2]);
+    
+    int start_x,start_y,end_x,end_y;
+    vector<string> cells = align(command_array[1]);
+    start_x = stoi(cells[0].substr(1)) -1;
+    start_y = cells[0][0] -'A';
+
+    end_x = stoi(cells[cells.size()-1].substr(1)) -1;
+    end_y = cells[cells.size()-1][0] -'A';
+    cout << start_x << start_y << endl;
+    cout << end_x << end_y;
+
+    if(command_array.size() != 3) {
+      cout << "Not enough argument\n";
+      return;
+    }
+    if(end_x >= row or end_y >= col){
+      cout << "Out of range\n";
+      return;
+    }
+    
+
+    while(getline(fin,str)){
+        if(str == "//---FLAG---//"){
+            fout << "var data = [ \n";
+            for( int i = start_y + 1 ; i < end_y+1 ; i++ ){
+                fout << "\t{\n";
+                fout <<"\t\t" <<char(34) << "title" << char(34) << ":" << char(34) <<array[start_x][i] << char(34) << ",\n";
+                for( int j = start_x+1 ; j < end_x+1 ; j++ ){
+                    fout<<"\t\t" << char(34) <<array[j][start_y] << char(34) << ":" << array[j][i];
+                    if(j != 4)
+                        fout << ",\n";
+                }
+                fout << "\n\t}";
+                if(i != 4)
+                    fout << ",\n";
+            }
+            fout << "\n] \n";
+        }   
+        else{
+            fout << str << "\n";
+        }
+        
+    }
+    
+    fin.close();
+    fout.close();
+    
+}

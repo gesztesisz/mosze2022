@@ -63,6 +63,8 @@ int main(int argc,char* argv[]) {
     }
     else if(command_array[0] == "set")
       tables[active]->aggregate_func(command_array);
+    else if(command_array[0] == "barchart")
+      tables[active]-> barchart_func(command_array);
     else if(command_array[0] == "exit"){
       for(unsigned int i = 0;i<tables.size();i++){
         delete tables[i];

@@ -45,4 +45,5 @@ public:
   void sort_func(vector<string> &command_array);
   void swap_func(vector<string> &command_array);
   void aggregate_func(vector<string> &command_array);
+  void barchart_func(vector<string> &command_array);
 };
