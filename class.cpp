@@ -15,7 +15,7 @@ void table::add_func(vector<string> &command_array){
   row = getRow();
   col = getCol();
   int pcs = stoi(command_array[1]);
-  if(col+pcs > 26){
+  if(col+pcs > 26 && command_array[2] == "cols"){
     cout <<"Limit of columns is 26\n\n";
     return;
   }
@@ -202,7 +202,7 @@ void table::clear_func(vector<string> &command_array){
   end_y = stoi(str2.substr(1))-1;
 
   
-  // INDEX ELLENŐRZÉS HIÁNYZIK
+  
   int tmp;
   if(start_x > end_x){
     tmp = start_x;
@@ -223,12 +223,12 @@ void table::clear_func(vector<string> &command_array){
 
 void table::delete_func(vector<string> &command_array){
   if(command_array[1][0] >= 'A' and command_array[1][0] <= 'Z'){
-    if(col == 1){
-      cout << "You cannot delete single column\n\n";
+    if(command_array[1][0]-65+1 >= col){
+      cout << "This column does not exist\n\n";
       return;
     }
-    if(command_array[1][0]-65+1 > col){
-      cout << "This column does not exist\n\n";
+    if(col == 1){
+      cout << "You cannot delete single column\n\n";
       return;
     }
 
@@ -237,14 +237,15 @@ void table::delete_func(vector<string> &command_array){
     }
   }
   else if(command_array[1][0]>= '0' and command_array[1][0]<= '9'){
+    if(stoi(command_array[1]) >= row){
+      cout<< "This row does not exist\n\n";
+      return;
+    }
     if(row == 1){
       cout << "You cannot delete single row\n\n";
       return;
     }
-    if(stoi(command_array[1]) > row){
-      cout<< "This row does not exist\n\n";
-      return;
-    }
+
     int akt = stoi(command_array[1]);
     array.erase(array.begin()+akt-1);
   }
@@ -256,10 +257,17 @@ void table::edit_func(vector<string> &command_array){
     return;
   }
 
+  
+
   string pos = command_array[1];
 
   int y_pos = pos[0]-'A';
   int x_pos = stoi(pos.substr(1,pos.length()-1))-1;
+
+  if (x_pos >= row or y_pos >= col){
+    cout << "This command doesn't exist\n";
+    return;
+  }
 
   array[x_pos][y_pos] = command_array[2];
 }
@@ -269,26 +277,27 @@ void table::insert_func(vector<string> &command_array){
   int pos;
   vector<string> temp;
 
-  if (command_array[2]=="rows" and (command_array[4][0] >= 'A' and command_array[4][0]<= 'Z')){
+  if (command_array[2]=="rows" && (command_array[4][0] >= 'A' && command_array[4][0]<= 'Z')){
     cout << "Error! You want to edit row with column\n"<<endl;
     return;
   }
-  else if(command_array[2]== "cols" and (command_array[4][0] >= '0' and command_array[4][0] <= '9')){
+  else if(command_array[2]== "cols" && (command_array[4][0] >= '0' && command_array[4][0] <= '9')){
     cout << "Error! You want to edit column with row\n"<<endl;
     return;
   }
-
-  if((command_array[4][0]-'A'+1 > col) and (command_array[2]== "cols")){
+  if((command_array[2]== "cols") && (command_array[4][0]-'A' >= col) ){
     cout << "This column does not exist\n"<<endl;
     return;
   } 
-  /*
-  if((stoi(command_array[4]) - 2 > row) and (command_array[2]== "rows")){
-    cout << "This column does not exist\n"<<endl;
+  if(command_array[2] == "rows" && stoi(command_array[4]) > row ){
+    cout << "This rows does not exist\n"<<endl;
+    return;  
+  }
+  if(command_array[2] == "cols" and (col + pcs) > 26){
+    cout << "Maximum size of column is 26\n";
     return;
   }
-  */
-
+  
   for(int k = 0;k<pcs;k++){
     if(command_array[2] == "cols"){
         pos = command_array[4][0]-'A';
@@ -459,8 +468,6 @@ void table::sort_func(vector<string> &command_array){
     is_row = true;
     pos = stoi(command_array[2])-1;
   }
-  //if(command_array.size() > 2 and command_array[3] == "desc")
-    //is_asc = false;
   if(is_row and pos+1 > row){
     cout << "Row doen't exist\n";
     return ;
