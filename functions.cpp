@@ -1,5 +1,9 @@
 #include "functions.h"
 
+//!  Split function. 
+/*!
+    Split commands by space from stdin
+*/
 void split_command(vector<string> &command_array,string cmd,char &sep){
   
   vector<string> vec;
@@ -39,6 +43,10 @@ void split_command(vector<string> &command_array,string cmd,char &sep){
   }
 }
 
+//!  Digit check function. 
+/*!
+    It return with true if the given string is a number
+*/
 bool is_digit(const string str){
   if(str == "")
     return false;
@@ -49,6 +57,10 @@ bool is_digit(const string str){
   return true;
 }
 
+//!  Length function. 
+/*!
+    It returns with length of string. (It checks  until first '.' character) 
+*/
 int len(const string str){
   int leng = 0;
   if(str == "")
@@ -62,6 +74,10 @@ int len(const string str){
   return leng;
 }
 
+//!  Swap coloumn function. 
+/*!
+    This makes the real swap.
+*/
 void swapping_col(vector<vector<string>> &array,int j){
   vector<string> temp;
   temp = array[j];
@@ -69,6 +85,11 @@ void swapping_col(vector<vector<string>> &array,int j){
   array[j+1] = temp;
   temp.clear();
 }
+
+//!  Swap row function. 
+/*!
+    This makes the real swap.
+*/
 void swapping_row(vector<vector<string>> &array,int j,int row){
   string temp;
   for(int i = 0;i<row;i++){
@@ -77,6 +98,11 @@ void swapping_row(vector<vector<string>> &array,int j,int row){
     array[i][j+1] = temp;
   }
 }
+
+//!  Sum function. 
+/*!
+    It returns with amount of choosen cells
+*/
 double sum(vector<vector<string>> array, vector<string> range){
   int x,y;
   double sum = 0.0;
@@ -87,6 +113,11 @@ double sum(vector<vector<string>> array, vector<string> range){
   }
   return sum;
 }
+
+//!  Average function. 
+/*!
+    It returns with average of choosen cells
+*/
 double avg(vector<vector<string>> array, vector<string> range){
   int x,y;
   double avg = 0.0;
@@ -99,6 +130,11 @@ double avg(vector<vector<string>> array, vector<string> range){
   }
   return avg/db;
 }
+
+//!  Minimum function. 
+/*!
+    It returns with minimum of choosen cells
+*/
 double min(vector<vector<string>> array, vector<string> range){
   int x,y;
   x = stoi(range[0].substr(1))-1;
@@ -112,6 +148,10 @@ double min(vector<vector<string>> array, vector<string> range){
   }
   return min;
 }
+//!  Maximum function. 
+/*!
+    It returns with maximum of choosen cells
+*/
 double max(vector<vector<string>> array, vector<string> range){
   int x,y;
   x = stoi(range[0].substr(1))-1;

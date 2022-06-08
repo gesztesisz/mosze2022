@@ -1,16 +1,25 @@
 #include "class.h"
 
+//! Add or switch new name of table
 void table::setName(string name){
   this->name = name;
 }
-
+//! Set number of row
 void table::setRow(){
   row = array.size();
 }
+//! Set number of col
 void table::setCol(){
   col = array[0].size();
 }
 
+
+//!  Add function. 
+/*!
+    This add some row/col to our table.
+    Maximum column is 26 (Z).
+    This push row/column end of table.
+*/
 void table::add_func(vector<string> &command_array){
   row = getRow();
   col = getCol();
@@ -41,7 +50,7 @@ void table::add_func(vector<string> &command_array){
   }
 
 }
-
+//! This is a simple function to get aligned cells.
 vector<string> table::align(string str){
   vector<string> ret;
   int pos = 0;
@@ -99,7 +108,10 @@ vector<string> table::align(string str){
   }
   return ret;
 }
-
+//!  Align function. 
+/*!
+    This set the choosed cells to right or left.
+*/
 void table::align_func(vector<string> &command_array){
   bool right = false; //default: left align
 
@@ -121,6 +133,10 @@ void table::align_func(vector<string> &command_array){
       align_right.erase(std::remove(align_right.begin(), align_right.end(), v[i]), align_right.end());
 }
 
+//!  Command line argument function. 
+/*!
+      This function is called when we give command line argument to program (calls: number of command line argument more than 1)
+*/
 void table::cla_func(int &argc, char *argv[]){
 
     setName(argv[1]);
@@ -181,6 +197,10 @@ void table::cla_func(int &argc, char *argv[]){
   
 }
 
+//!  Clear function. 
+/*!
+    Delete every choosed cells.
+*/
 void table::clear_func(vector<string> &command_array){
   if(command_array.size() <2 ){
     cout << "Not enough argument\n";
@@ -221,6 +241,10 @@ void table::clear_func(vector<string> &command_array){
   }
 }
 
+//!  Delete function. 
+/*!
+    Delete single row/column.
+*/
 void table::delete_func(vector<string> &command_array){
   if(command_array[1][0] >= 'A' and command_array[1][0] <= 'Z'){
     if(command_array[1][0]-65+1 >= col){
@@ -251,6 +275,10 @@ void table::delete_func(vector<string> &command_array){
   }
 }
 
+//!  Edit function. 
+/*!
+    Gives or changes cell value.
+*/
 void table::edit_func(vector<string> &command_array){
  if(command_array.size() < 3){
     cout << "Not enough commands\n\n";
@@ -272,6 +300,10 @@ void table::edit_func(vector<string> &command_array){
   array[x_pos][y_pos] = command_array[2];
 }
 
+//!  Insert function. 
+/*!
+    This pushes row/column to given place.
+*/
 void table::insert_func(vector<string> &command_array){
   int pcs = stoi(command_array[1]);
   int pos;
@@ -328,6 +360,10 @@ void table::insert_func(vector<string> &command_array){
   }  
 }
 
+//!  Print function. 
+/*!
+    Print table to stdout. 
+*/
 void table::print_func(){
 string ind = "";
  int width[col + 1]; //First element is full width 
@@ -410,6 +446,11 @@ string ind = "";
   }
 }
 
+//!  Save function. 
+/*!
+    Save actual table to file.
+    We can give own filename.
+*/
 void table::save_func(vector<string> &command_array,char &sep){
   string name = command_array[1];
   int i,j;
@@ -454,6 +495,11 @@ void table::save_func(vector<string> &command_array,char &sep){
   saved_file.close();
 }
 
+//!  Sort function. 
+/*!
+    Sort a row/column by given place.
+    This is extended sorting.
+*/
 void table::sort_func(vector<string> &command_array){
   bool is_asc = true;
   bool is_row;
@@ -532,6 +578,10 @@ void table::sort_func(vector<string> &command_array){
   }
 }
 
+//!  Swap function. 
+/*!
+    Swap 2 cells
+*/
 void table::swap_func(vector<string> &command_array){
     int x1,x2;
   int y1,y2;
@@ -565,6 +615,12 @@ void table::swap_func(vector<string> &command_array){
 
 }
 
+//!  Aggregate function. 
+/*!
+    We can make operations on cell(s).
+    SUM,AVG,MIN,MAX.
+    Range: A1:C3
+*/
 void table::aggregate_func(vector<string> &command_array){
   unsigned int edited_x,edited_y;
   edited_x = stoi(command_array[1].substr(1))-1;
@@ -623,6 +679,10 @@ void table::aggregate_func(vector<string> &command_array){
     array[edited_x][edited_y] = to_string(round( max(array,range) * 1000.0 ) / 1000.0).substr(0, std::to_string(round( max(array,range) * 1000.0 ) / 1000.0).find(".") + 3 + 1);
 }
 
+//!  Barchart function. 
+/*!
+    Make graph from table data
+*/
 void table::barchart_func(vector<string> &command_array){
     string str;
     ifstream fin("SVG/build.html");

@@ -2,6 +2,10 @@
 #include "headers.h"
 #include "functions.h"
 
+
+/**
+ * \brief    Base class to create tables
+ */
 class table{
 private:
   string name ;
@@ -9,6 +13,8 @@ private:
   int row,col;
   vector<string> align_right;
 public:
+
+   //! A default constructor
   table(){}
 
   vector<vector<string>> getArray() { return array; }
