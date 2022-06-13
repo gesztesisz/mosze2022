@@ -39,5 +39,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Doxygen artifact
+          name: Doxygen artifact 
           path: ${{ github.workspace }}/${{env.BUNDLE_PATH}}/DOCS/latex
