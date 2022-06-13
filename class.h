@@ -17,21 +17,28 @@ public:
    //! A default constructor
   table(){}
 
+
   vector<vector<string>> getArray() { return array; }
+
+  //! Get back number of row
   int getRow(){ 
     row = array.size();    
     return row; 
   }
+  //! Get back number of col
   int getCol(){ 
     col = array[0].size();
     return col; 
   }
 
+  //! Get back name of the table
   string getName(){return name;}
 
   void setRow();
   void setCol(); 
   void setName(string name);
+
+  //! Set array with another array
   void setArray(vector<vector<string>> array){
     this->array = array;
   }
