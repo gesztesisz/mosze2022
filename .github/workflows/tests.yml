@@ -18,7 +18,7 @@ jobs:
         run: chmod +x run_test.sh
       - name: I/O test
         run: ./run_test.sh
-      - name: Memory leak check
+      - name: Memory Leak Check
         run: valgrind --error-exitcode=1 ./a.out < input.txt
 
       - run: doxygen doxconf
