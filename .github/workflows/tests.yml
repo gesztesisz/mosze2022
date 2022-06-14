@@ -29,7 +29,6 @@ jobs:
           BRANCH: gh-pages
           FOLDER: DOCS/html
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@main
 
       - uses: actions/upload-artifact@v2
         with:
